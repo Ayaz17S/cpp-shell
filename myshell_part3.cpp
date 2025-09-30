@@ -36,7 +36,18 @@ int main() {
 
         if (args[0] == "exit") {
             break;
+        } else if (args[0]=="cd") {
+            if (args.size()<2){
+                std::cerr << "cd: expected argument to \"cd\"" << std::endl;
+            } else {
+
+                if (chdir(args[1].c_str()) != 0) {
+                    perror("cd");
+                }
+            }
+            continue;
         }
+
 
         std::vector<char*> c_args;
         for (auto& arg : args) {
